@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 from langchain_postgres import PGVector
-from langchain.schema import HumanMessage
+from langchain_core.messages import HumanMessage
 
 load_dotenv()
 
@@ -87,7 +87,7 @@ def search_prompt(question=None):
         
         # 5. CHAMAR A LLM (Google Gemini)
         llm = ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash-exp",
+            model="gemini-2.0-flash",
             google_api_key=GOOGLE_API_KEY,
             temperature=0,
         )
@@ -99,5 +99,5 @@ def search_prompt(question=None):
         return response.content
         
     except Exception as e:
-        print(f"❌ Erro ao processar pergunta: {e}")
+        print(f"Erro ao processar pergunta: {e}")
         return "Desculpe, ocorreu um erro ao processar sua pergunta."

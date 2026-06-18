@@ -1,12 +1,12 @@
 # Desafio MBA Engenharia de Software com IA - Full Cycle
 
-## 📚 Ingestão e Busca Semântica com LangChain e Postgres
+## Ingestão e Busca Semântica com LangChain e Postgres
 
 Sistema de busca semântica (RAG - Retrieval Augmented Generation) que permite fazer perguntas sobre o conteúdo de um PDF utilizando LangChain, PostgreSQL com pgVector e Google Gemini.
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Entregar um software capaz de:
 
@@ -15,18 +15,18 @@ Entregar um software capaz de:
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Linguagem**: Python 3.9+
 - **Framework**: LangChain
 - **Banco de dados**: PostgreSQL + pgVector
-- **LLM**: Google Gemini (gemini-2.0-flash-exp)
-- **Embeddings**: Google Gemini (models/embedding-001)
+- **LLM**: Google Gemini (gemini-2.0-flash)
+- **Embeddings**: Google Gemini (gemini-embedding-2)
 - **Execução do banco**: Docker & Docker Compose
 
 ---
 
-## 📋 Pré-requisitos
+## Pré-requisitos
 
 Antes de começar, certifique-se de ter instalado:
 
@@ -36,29 +36,29 @@ Antes de começar, certifique-se de ter instalado:
 
 ---
 
-## 🚀 Como Executar
+## Como Executar
 
-### 1️⃣ Clonar o Repositório
+### 1. Clonar o Repositório
 
 ```bash
 git clone <url-do-repositorio>
 cd mba-ia-desafio-ingestao-busca
 ```
 
-### 2️⃣ Criar Ambiente Virtual
+### 2. Criar Ambiente Virtual
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate  # No Windows: venv\Scripts\activate
 ```
 
-### 3️⃣ Instalar Dependências
+### 3. Instalar Dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4️⃣ Configurar Variáveis de Ambiente
+### 4. Configurar Variáveis de Ambiente
 
 Crie um arquivo `.env` na raiz do projeto baseado no `.env.example`:
 
@@ -70,7 +70,7 @@ Edite o arquivo `.env` e adicione sua API Key do Google:
 
 ```env
 GOOGLE_API_KEY=sua_chave_aqui
-GOOGLE_EMBEDDING_MODEL=models/embedding-001
+GOOGLE_EMBEDDING_MODEL=gemini-embedding-2
 DATABASE_URL=postgresql+psycopg://postgres:postgres@localhost:5432/rag
 PG_VECTOR_COLLECTION_NAME=pdf_embeddings
 PDF_PATH=document.pdf
@@ -81,7 +81,7 @@ PDF_PATH=document.pdf
 2. Clique em "Create API Key"
 3. Copie a chave gerada
 
-### 5️⃣ Subir o Banco de Dados
+### 5. Subir o Banco de Dados
 
 ```bash
 docker-compose up -d
@@ -89,7 +89,7 @@ docker-compose up -d
 
 Aguarde alguns segundos para o banco inicializar completamente.
 
-### 6️⃣ Executar a Ingestão do PDF
+### 6. Executar a Ingestão do PDF
 
 ```bash
 python src/ingest.py
@@ -97,20 +97,20 @@ python src/ingest.py
 
 **Saída esperada:**
 ```
-🚀 Iniciando processo de ingestão...
-📄 Carregando PDF: document.pdf
-✅ PDF carregado! Total de páginas: 34
-✂️  Dividindo documento em chunks...
-✅ Documento dividido em 67 chunks
-🔧 Configurando embeddings com modelo: models/embedding-001
-💾 Conectando ao banco de dados: postgresql+psycopg://postgres:postgres@localhost:5432/rag
-📦 Collection: pdf_embeddings
-✅ Chunks salvos no banco vetorial com sucesso!
-📊 Total de embeddings gerados: 67
-🎉 Ingestão concluída!
+Iniciando processo de ingestão...
+Carregando PDF: document.pdf
+PDF carregado! Total de páginas: 34
+Dividindo documento em chunks...
+Documento dividido em 67 chunks
+Configurando embeddings com modelo: gemini-embedding-2
+Conectando ao banco de dados: postgresql+psycopg://postgres:postgres@localhost:5432/rag
+Collection: pdf_embeddings
+Chunks salvos no banco vetorial com sucesso!
+Total de embeddings gerados: 67
+Ingestão concluída!
 ```
 
-### 7️⃣ Executar o Chat
+### 7. Executar o Chat
 
 ```bash
 python src/chat.py
@@ -120,11 +120,11 @@ python src/chat.py
 
 ```
 ============================================================
-🤖 SISTEMA DE BUSCA SEMÂNTICA - RAG com LangChain
+SISTEMA DE BUSCA SEMÂNTICA - RAG com LangChain
 ============================================================
 
-📚 Sistema pronto para responder perguntas sobre o PDF!
-💡 Dica: Digite 'sair' ou 'exit' para encerrar.
+Sistema pronto para responder perguntas sobre o PDF!
+Dica: Digite 'sair' ou 'exit' para encerrar.
 
 ============================================================
 
@@ -132,7 +132,7 @@ python src/chat.py
 Faça sua pergunta: Qual o faturamento da Empresa SuperTechIABrazil?
 ────────────────────────────────────────────────────────────
 
-🔍 Buscando informações relevantes...
+Buscando informações relevantes...
 
 ============================================================
 RESPOSTA:
@@ -148,7 +148,7 @@ O faturamento foi de 10 milhões de reais.
 Faça sua pergunta: Quantos clientes temos em 2024?
 ────────────────────────────────────────────────────────────
 
-🔍 Buscando informações relevantes...
+Buscando informações relevantes...
 
 ============================================================
 RESPOSTA:
@@ -159,7 +159,7 @@ Não tenho informações necessárias para responder sua pergunta.
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 ├── docker-compose.yml          # Configuração do PostgreSQL com pgVector
@@ -176,7 +176,7 @@ Não tenho informações necessárias para responder sua pergunta.
 
 ---
 
-## 🔧 Detalhes Técnicos
+## Detalhes Técnicos
 
 ### Ingestão (`src/ingest.py`)
 
@@ -202,7 +202,7 @@ O sistema utiliza um prompt rigoroso que:
 
 ---
 
-## 🐳 Gerenciamento do Docker
+## Gerenciamento do Docker
 
 ### Parar o banco de dados:
 ```bash
@@ -222,7 +222,7 @@ docker-compose up -d
 
 ---
 
-## 🧪 Testando o Sistema
+## Testando o Sistema
 
 ### Perguntas que devem funcionar (dentro do contexto do PDF):
 - "Qual o faturamento da empresa?"
@@ -236,7 +236,7 @@ docker-compose up -d
 
 ---
 
-## 📦 Dependências Principais
+## Dependências Principais
 
 - `langchain` - Framework para aplicações com LLMs
 - `langchain-community` - Integrações da comunidade (PyPDFLoader)
@@ -249,7 +249,7 @@ docker-compose up -d
 
 ---
 
-## ⚠️ Troubleshooting
+## Troubleshooting
 
 ### Erro: "ModuleNotFoundError: No module named 'dotenv'"
 ```bash
@@ -276,22 +276,10 @@ docker-compose restart
 
 ---
 
-## 📝 Notas
+## Notas
 
 - O PDF `document.pdf` deve estar na raiz do projeto
 - A ingestão precisa ser executada apenas uma vez (ou quando o PDF mudar)
 - O banco de dados persiste os dados em um volume Docker
 - O sistema usa `temperature=0` para respostas mais consistentes
 - Chunks com overlap garantem que informações não sejam cortadas
-
----
-
-## 👨‍💻 Autor
-
-Desenvolvido como parte do desafio do MBA em Engenharia de Software com IA - Full Cycle
-
----
-
-## 📄 Licença
-
-Este projeto é parte de um desafio educacional.
